@@ -1,0 +1,24 @@
+func isAnagram(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+
+	sMap := make(map[rune]int)
+
+	for _, char := range s {
+		sMap[char]++
+	}
+	for _, char := range t {
+		_, exists := sMap[char]
+		if !exists {
+			return false
+		}
+
+		sMap[char]--
+		if sMap[char] < 0 {
+			return false
+		}
+	}
+
+	return true
+}
